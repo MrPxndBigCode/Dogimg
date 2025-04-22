@@ -76,7 +76,8 @@
 <body>
     <div class="container">
         <h1>Random Cat Image Fetcher😼</h1>
-        <img src="<%= locals.data_cat %>" alt="Dog Image" style="max-width: 100%; height: auto;">
+        <% data_cat.forEach(function(imageUrl){ %>
+        <img src="<%= imageUrl %>" alt="Dog Image" style="max-width: 100%; height: auto;"> <% }); %>
         <form action="" method="post">
             <button type="submit" formaction="/fetch-cat">fetch cat😼</button>
         </form>
@@ -85,7 +86,8 @@
 
     <div class="container">
         <h1>Random Dog Image Fetcher🐶</h1>
-        <img src="<%= locals.data %>" alt="Cat Image" style="max-width: 100%; height: auto;">
+        <% data.forEach(function(imageUrl){ %>
+        <img src="<%= imageUrl %>" alt="Cat Image" style="max-width: 100%; height: auto;"><% }); %>
         <form action="" method="post">
             <button type="submit" formaction="/fetch">fetch dog🐶</button>
         </form>

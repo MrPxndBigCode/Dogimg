@@ -14,17 +14,25 @@ const API_KEY = {
     }
 }
 
+let imageUrlcat = [];
+let imageUrldog = [];
+
 app.get("",(req,res)=>{
-    res.render("index.ejs");
+    res.render("index.ejs",{
+        data: imageUrldog,
+        data_cat: imageUrlcat
+    });
 })
 
 app.post("/fetch-cat",async(req,res)=>{
     try {
         const result_cat = await axios.get(API_URL_CAT,API_KEY)
         const imageUrl = result_cat.data[0].url;
-        console.log(result_cat.data[0].url);    
+        console.log(result_cat.data[0].url);
+        imageUrlcat.push(imageUrl);
         res.render("index.ejs",{
-            data_cat:imageUrl
+            data: imageUrldog,
+        data_cat: imageUrlcat
         })
     } catch (error) {
         console.log(error.meassage)
@@ -35,10 +43,12 @@ app.post("/fetch",async(req,res)=>{
     try {
         const result = await axios.get(API_URL)
         const imageUrl = result.data.message;
+        imageUrldog.push(imageUrl);
         console.log(result.data);
         console.log(imageUrl);
         res.render("index.ejs",{
-            data:imageUrl
+            data: imageUrldog,
+            data_cat: imageUrlcat
         })
     } catch (error) {
         console.log(error.meassage)
